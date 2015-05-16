@@ -11,10 +11,16 @@ var scene = new THREE.Scene();
 // Resource: http://www.script-tutorials.com/webgl-with-three-js-lesson-9/
 // Takes four arguments
   // Field of view: zoom (lower = more zoomed in, higher = less)
-  // Aspect ratio: ratio of the screen width and height
+  // Aspect ratio: ratio of the screen width and height, for example:
+    // Width and height equal to that of the screen
+    var aspectRatio = window.innerWidth / window.innerHeight;
+    // Width half of screen and height equal to that of the screen
+    // var aspectRatio = (window.innerWidth * .5) / window.innerHeight;
+    // Width equal to that of the screen and height half of screen
+    // var aspectRatio = window.innerWidth / (window.innerHeight * .5);
   // Near clipping plane: start of what you can see in the z direction
   // Far clipping plane: end of what you can see in the z direction
-var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+var camera = new THREE.PerspectiveCamera(45, aspectRatio, 0.1, 1000);
 // Move camera z back so you can see objects rendered at 0,0,0
 var cameraZPosition = camera.position.z + 15;
 camera.position.z = cameraZPosition;
@@ -49,7 +55,7 @@ function update() {
   // We're choosing a FOV range between 30-70, so we add 30 because
   // this moves the lower FOV limit to 30 (and the upper is 70
   // because we added 40 earlier)
-  fieldOfView.update((Math.sin(clock.getElapsedTime() * .5) * 40) + 30);
+  // fieldOfView.update((Math.sin(clock.getElapsedTime() * .5) * 40) + 30);
 
   // Generally, the following line moves the plane
   // in and our across the z acess in a function of time
